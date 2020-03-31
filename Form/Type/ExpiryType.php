@@ -82,11 +82,7 @@ class ExpiryType extends AbstractType {
      * @return string
      */
     public function getBlockPrefix() {
-        if (Kernel::VERSION_ID > '20803') {
-            return self::class;
-        } else {
-            return 'date';
-        }
+        return 'expiry';
     }
 
 }
