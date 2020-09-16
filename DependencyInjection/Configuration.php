@@ -19,8 +19,16 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('mindfire_expiry_field');
+        $treeBuilder = new TreeBuilder('mindfire_expiry_field');
+
+        if (method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->getRootNode();
+        } else {
+            // BC layer for symfony/config 4.1 and older
+            $rootNode = $treeBuilder->root('mindfire_expiry_field');
+        }
+
+        $rootNode = $treeBuilder->getRootNode();
         return $treeBuilder;
     }
 
