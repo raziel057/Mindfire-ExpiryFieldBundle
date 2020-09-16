@@ -38,7 +38,9 @@ class MindfireExpiryFieldExtension extends Extension implements PrependExtension
      */
     public function prepend(ContainerBuilder $container)
     {
-        if (Kernel::VERSION >= '2.6') {
+        if (Kernel::VERSION >= '4.0') {
+            $config = array('form_themes' => array('@MindfireExpiryField/Form/expiry.html.twig'));
+        } elseif (Kernel::VERSION >= '2.6') {
             $config = array('form_themes' => array('MindfireExpiryFieldBundle:Form:expiry.html.twig'));
         } else {
             $config = array('form' => array('resources' => array('MindfireExpiryFieldBundle:Form:expiry.html.twig')));
